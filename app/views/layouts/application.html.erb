@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookers2</title>
+    <title>Bookers</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,7 +12,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -62,7 +62,46 @@
       </nav>
     </header>
 
-
+<header>
+  <nav class ="navbar navbar-expand-1g navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <span>Bookers</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li>
+            <a class="nav-link text-light" href="/users/75106">
+              <i class="fas fa-home"></i>
+              Home
+            </a>
+          </li> <!--usersのurl変更する-->
+          <li>
+            <a class="nav-link text-light" href="/users">
+              <i class="fas fa-users"></i>
+              Users
+            </a>
+          </li>
+          <li>
+            <a class="nav-link text-light" href="/books">
+              <i class="fas fa-book-open"></i>
+              Books
+            </a>
+          </li>
+          <li>
+            <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
+              <i class="fas fa-sign-out-alt"></i>
+              Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 
     <%= yield %>
 

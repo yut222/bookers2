@@ -1,2 +1,13 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<div class="row">
+  <div class="col-xs-3">
+    <h2>User info</h2>
+    <%= render 'users/profile' %>
+    <h2>New book</h2>
+    <%= render "books/form" %>
+  </div>
+  
+  <div class="col-xs-9" id="book_list">
+    <h2>Books index</h2>
+    <%= render 'books/list', books: @books %>
+  </div>
+</div>

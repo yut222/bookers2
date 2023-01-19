@@ -1,20 +1,19 @@
 <!-- ユーザーの詳細 -->
 <div>
-  <h3><%= @user.name %></h3>
+  <h2>User info</h2>
   <%= image_tag @user.get_profile_image(100,100) %>
+  <h6><%= @user.name %></h6>
 </div>
 
 <!-- ユーザーの投稿一覧 -->
 
-<% @books.each do |book| %>
-<div>
-  <%= link_to book_path(book.id) do %>
-    <%= image_tag book.get_image %>
+  <h2>New book</h2>
+  <%= form_with model: Book.new do |f| %>
+    <h6>Title</h6>
+    <%= f.text_field :title %>
+    
+    <h6>Opinion</h6>
+    <%= f.text_area :body %>
+    
+    <%= f.submit 'Create Book' %>
   <% end %>
-  <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
-  <p>ショップ名：<%= image_tag.shop_name %></p>
-  <p>説明：<%= image_tag.caption %></p>
-  <p>ユーザーネーム：<%= image_tags.user.name %></p>
-</div>
-<% end %>
-
