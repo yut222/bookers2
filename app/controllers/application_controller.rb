@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   #サインイン後の遷移先設定
   def after_sign_in_path_for(resource)
-    new_user_registration_path
+    user_path(current_user.id)
   end
 
   #サインアウト後の遷移先設定
@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
 
 end
