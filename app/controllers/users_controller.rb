@@ -6,6 +6,7 @@ before_action :is_matching_login_user, only: [:edit]
   def show
     @user = User.find(params[:id])
     @books = @user.books
+    @book = Book.new
   end
 
   def edit
