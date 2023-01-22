@@ -4,7 +4,7 @@
   <h2>User info</h2>
   <form enctype="multipart/form-data" action="edit_user_path" accept-charset="UTF-8" method="post">
     <input type="hidden" name="authenticity_token" value="SnDuHW8WAd_tp4VZcBaraPkbyr89k2jTuBjfamXoaDxE-jxUSqLwkkjGj4cgrR10TB_inX9255bomJKHVA_ntA" autocomplete="off">
-    
+
     <%= form_with model: @user do |f| %>
       <div class="form-group">
         <label for="user_name">Name</label>
@@ -19,7 +19,7 @@
         <textarea class="form-control introduction" name="user[introduction]" id="user_introduction"></textarea>
       </div>
       <div class="form-group">
-        <<input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">
+        <input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">
       </div>
     <% end %>
   </form>

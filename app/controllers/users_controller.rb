@@ -2,13 +2,17 @@ class UsersController < ApplicationController
 
 before_action :is_matching_login_user, only: [:edit]
 
-
+  def new
+    @book = Book.new
+  end
+  
   def show
     @book = Book.new
     @user = User.find(params[:id])
     @books = @user.books
+    flash[:notice] = "Signed in successfully."  # sign_in用フラッシュメッセージ
   end
-
+  
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
@@ -46,7 +50,7 @@ before_action :is_matching_login_user, only: [:edit]
       redirect_to users_path
     end
   end
-
+  
   # 投稿データのストロングパラメータ
   private
 

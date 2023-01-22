@@ -21,7 +21,7 @@
                 <td>
 
                   <% @books.each do |book| %>
-                  <div>
+                  
                     <%= link_to book_path(book.id) do %>
                       <%= image_tag book.get_image %>
                     <% end %>
@@ -29,7 +29,7 @@
                     <p><%= book.title %></p>
                     <p><%= book.body %></p>
                   <% end %>
-
+                  </
                 </td>
               </tr>
             </tbody>
