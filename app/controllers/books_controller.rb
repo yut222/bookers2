@@ -13,14 +13,21 @@ class BooksController < ApplicationController
 
 # 投稿一覧
   def index
-    @books = Book.all  #bookテーブルの全情報を取得して、@books(複数形)に格納
+    @books = Book.all
     @book = Book.new
+    @user = current_user
   end
 
   def show
   end
 
   def edit
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
   end
 
   # 投稿データのストロングパラメータ

@@ -1,23 +1,26 @@
-<!--Userinfo ユーザー登録編集-->
+<!--Userinfo プロフィール編集-->
 
 <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   <h2>User info</h2>
   <form enctype="multipart/form-data" action="edit_user_path" accept-charset="UTF-8" method="post">
     <input type="hidden" name="authenticity_token" value="SnDuHW8WAd_tp4VZcBaraPkbyr89k2jTuBjfamXoaDxE-jxUSqLwkkjGj4cgrR10TB_inX9255bomJKHVA_ntA" autocomplete="off">
-    <div class="form-group">
-      <label for="user_name">Name</label>
-      <input class="form-control name" type="text" value="user[name]" name="user[name]" id="user_name">
-    </div>
-    <div class="form-group">
-      <label for="user_image">Image</label>
-      <input class="form-control-file user_image" accept="image/*" type="file" name="user[profile_image]" id="user_profile_image">
-    </div>
-    <div class="form-group">
-      <label for="user_introduction">Introduction</label>
-      <textarea class="form-control introduction" name="user[introduction]" id="user_introduction"></textarea>
-    </div>
-    <div class="form-group">
-      <<input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">
-    </div>
+    
+    <%= form_with model: @user do |f| %>
+      <div class="form-group">
+        <label for="user_name">Name</label>
+        <input class="form-control name" type="text" value="user[name]" name="user[name]" id="user_name">
+      </div>
+      <div class="form-group">
+        <label for="user_image">Image</label>
+        <input class="form-control-file user_image" accept="image/*" type="file" name="user[profile_image]" id="user_profile_image">
+      </div>
+      <div class="form-group">
+        <label for="user_introduction">Introduction</label>
+        <textarea class="form-control introduction" name="user[introduction]" id="user_introduction"></textarea>
+      </div>
+      <div class="form-group">
+        <<input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">
+      </div>
+    <% end %>
   </form>
 </div>
