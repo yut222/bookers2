@@ -9,6 +9,13 @@ before_action :is_matching_login_user, only: [:edit]
     @books = @user.books
   end
 
+  def create
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    @book.save
+    redirect_to books_path
+  end
+
   def edit
     @book = Book.new
     @user = User.find(params[:id])
@@ -18,7 +25,7 @@ before_action :is_matching_login_user, only: [:edit]
   def index
     @users = User.all
     @user = current_user
-    @books = Book.all
+    @book = Book.new
   end
 
   def update
@@ -38,6 +45,13 @@ before_action :is_matching_login_user, only: [:edit]
     unless user_id == current_user.id
       redirect_to users_path
     end
+  end
+
+  # 投稿データのストロングパラメータ
+  private
+
+  def book_params
+    params.require(:book).permit(:user.name, :image, :caption)
   end
 
 end

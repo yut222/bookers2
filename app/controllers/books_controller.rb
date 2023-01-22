@@ -19,6 +19,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    @books = Book.all
+    @book = Book.new
+    @user = current_user
   end
 
   def edit
@@ -34,7 +37,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:shop_name, :image, :caption)
+    params.require(:book).permit(:user.name, :image, :caption)
   end
 
 end
