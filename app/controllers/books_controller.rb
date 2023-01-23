@@ -20,10 +20,9 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.new
-    @books = Book.all #find(params[:id])
+    @books = Book.all
     @user = current_user
-    flash[:notice] = "You have created book successfully."  # 新規作成成功フラッシュメッセージ
-    flash[:notice] = "Welcome! You have signed up successfully."  # sign_up用フラッシュメッセージ
+    redirect_to book_path
   end
 
   def edit

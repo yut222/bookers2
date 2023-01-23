@@ -1,7 +1,7 @@
-<!-- 新規作成用フラッシュメッセージ -->
-<div class="flash">
-  <%= flash[:notice] %>
-</div>
+<!-- フラッシュメッセージ -->
+  <% flash.each do |message_type, message| %>
+    <%= content_tag :div, message, class: message_type %>
+  <% end %>
 
 
 <div class="container px-5 px-sm-0">
@@ -19,17 +19,15 @@
 
           <tbody>
             <tr>
-              <% @books.each do |book| %>  <!-- @booksに入ってるデータを1つ取り出して、eachで1つずつ取り出したデータを、|book|に保存している -->
+
                <tbody>
                 <tr>
-                  <td><%= image_tag book.user.get_profile_image(100,100) %><%= link_to book.user.name, "user_path" %></td>
-                  <td><%= link_to book.title, "book_path" %></td>
-                  <td><%= book.body %></td>
-            			<td><%= link_to "Edit", edit_book_path(book.id), class: "btn btn-sm btn-success" %></td>
-            			<td><%= link_to "Destroy", book_path, method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-sm btn-danger" %></td>
+                  <td><%= image_tag @books.user.get_profile_image(100,100) %><%= link_to @books.user.name, "user_path" %></td>
+                  <td><%= link_to @books.title, "book_path" %></td>
+                  <td><%= @books.body %></td>
                 </tr>
                </tbody>
-              <% end %>
+
               </td>
             </tr>
           </tbody>

@@ -10,7 +10,6 @@ before_action :is_matching_login_user, only: [:edit]
     @book = Book.new
     @user = User.find(params[:id])
     @books = @user.books
-    flash[:notice] = "Signed in successfully."  # sign_in用フラッシュメッセージ
   end
   
   def create
