@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-before_action :is_matching_login_user, only: [:edit]
+#before_action :is_matching_login_user, only: [:edit]
 
   def new
     @book = Book.new
@@ -35,29 +35,20 @@ before_action :is_matching_login_user, only: [:edit]
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(user_parms)
+    @user = User.find(params[:id]) #不要？
+    @user.update(user_params)
     redirect_to user_path(user.id)
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :profile_image)
-  end
 
-  def is_matching_login_user
-    user_id = params[:id].to_i
-    unless user_id == current_user.id
-      redirect_to users_path
-    end
-  end
 
   # 投稿データのストロングパラメータ
   private
 
-  def book_params
-    params.require(:book).permit(:user.name, :image, :introduction, :caption)
+  def user_params
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 
 end

@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   # 投稿データの保存
   def create
     @book = Book.new(book_params)
-    @book.user.id = current_user.id
+    @book.user = current_user
     if @book.save
     redirect_to book_path(@book.id)
     else
@@ -41,7 +41,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:user.name, :title, :body, :image)
+    params.require(:book).permit(:title, :body)
   end
 
 end

@@ -1,7 +1,7 @@
 <!-- フラッシュメッセージ -->
-  <% flash.each do |message_type, message| %>
-    <%= content_tag :div, message, class: message_type %>
-  <% end %>
+<% flash.each do |message_type, message| %>
+  <%= content_tag :div, message, class: message_type %>
+<% end %>
   
 <div class="container px-5 px-sm-0">
   <div class="row">
@@ -40,8 +40,8 @@
         
         <!--バリデーション-->
         <% if @book.errors.any? %>
-          <%=  @book.errors.count %>県エラーが発生しました。
-        
+          <%=  @book.errors.count %>エラーが発生
+        <% end %>
     </div>
   </div>
 </div>

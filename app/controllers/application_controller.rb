@@ -14,11 +14,10 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  protected  #protectedは呼び出された他のコントローラからも参照することができ
+  protected  #protectedは呼び出された他のコントローラからも参照することができる
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
   end
 
 end
