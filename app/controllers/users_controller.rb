@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id]) #不要？
     @user.update(user_params)
-    redirect_to user_path(user.id)
+    redirect_to user_path(@user.id)
   end
 
   private
