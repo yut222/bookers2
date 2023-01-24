@@ -6,9 +6,12 @@ class BooksController < ApplicationController
   # 投稿データの保存
   def create
     @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    @book.save
+    @book.user.id = current_user.id
+    if @book.save
     redirect_to book_path(@book.id)
+    else
+      render user_path  #投稿ページを再表示
+    end
   end
 
 # 投稿一覧

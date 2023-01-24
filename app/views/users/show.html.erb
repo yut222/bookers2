@@ -37,6 +37,11 @@
            </tbody>
           <% end %>
         </table>
+        
+        <!--バリデーション-->
+        <% if @book.errors.any? %>
+          <%=  @book.errors.count %>県エラーが発生しました。
+        
     </div>
   </div>
 </div>
