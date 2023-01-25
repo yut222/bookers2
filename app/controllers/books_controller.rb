@@ -8,7 +8,8 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user = current_user
     if @book.save
-    redirect_to book_path(@book.id)
+      flash[:notice] = "You have created book successfully."  #フラッシュメッセージ
+      redirect_to book_path(@book.id)
     else
       render user_path  #投稿ページを再表示
     end
@@ -29,6 +30,10 @@ class BooksController < ApplicationController
   end
 
   def edit
+  end
+  
+  def update
+    flash[:notice] = "successfully"  #フラッシュメッセージ
   end
 
   def destroy

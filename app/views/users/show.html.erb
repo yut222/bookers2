@@ -1,10 +1,5 @@
-<!-- フラッシュメッセージ -->
-<div class="flash-notifications">
-  <% flash.each do |key, value| %>
-   <%= content_tag(:div, value, class: key) %>
-  <% end %>
-</div>
-  
+
+
 <div class="container px-5 px-sm-0">
   <div class="row">
     <!-- col3部分を共通化 -->
@@ -33,13 +28,13 @@
                   <%= image_tag book.get_image %>
                 <% end %>
               </td>
-              <td><%= link_to book.title, "book_path" %></td>
+              <td><%= link_to book.title, book_path(book.id) %></td>
               <td><%= book.body %></td>
             </tr>
            </tbody>
           <% end %>
         </table>
-        
+
         <!--バリデーション-->
         <% if @book.errors.any? %>
           <%=  @book.errors.count %>エラーが発生
