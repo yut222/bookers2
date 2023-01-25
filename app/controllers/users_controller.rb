@@ -36,10 +36,15 @@ class UsersController < ApplicationController
   end
 
   def update
+    @books = Book.all
     @user = User.find(params[:id]) #不要？
     @user.update(user_params)
-    flash[:notice] = "You have updated user successfully."  #フラッシュメッセージ
-    redirect_to user_path(@user.id)
+    if @user.save
+      flash[:notice] = "You have updated user successfully."  #フラッシュメッセージ
+      redirect_to user_path(@user.id)
+    else
+      render :show
+    end
   end
 
   private
