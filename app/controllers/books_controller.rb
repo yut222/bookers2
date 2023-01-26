@@ -5,8 +5,10 @@ class BooksController < ApplicationController
 
   # 投稿データの保存
   def create
+    @user = current_user
     @books = Book.all
     @book = Book.new(book_params)
+    @book.user_id = current_user.id
     if @book.save  #バリデーション
       flash[:notice] = "You have created book successfully."  #フラッシュメッセージ
       redirect_to book_path(@book.id)
@@ -24,9 +26,10 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.new
+    @book_show = Book.find(params[:id])
     @books = Book.all
     @user = current_user
-    redirect_to book_path
+#    redirect_to book_path
   end
 
   def edit
