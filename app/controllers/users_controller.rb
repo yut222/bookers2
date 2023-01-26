@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-#before_action :is_matching_login_user, only: [:edit]
 
   def new
     @book = Book.new
@@ -57,5 +56,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
+  
+
 
 end

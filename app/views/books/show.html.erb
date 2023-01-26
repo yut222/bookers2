@@ -7,17 +7,42 @@
     <!-- ユーザーの投稿詳細 -->
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
+
+        <% if @book.errors.any? %>
+          <%= @book.errors.count %> errors prohibited this obj from being saved:
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
       <table class="table">
           <tbody>
             <tr>
-              <tbody>
-                <tr>
-                  <td><%= image_tag @book_show.user.get_profile_image(100,100) %><%= link_to @book_show.user.name, user_path(@book_show.user.id) %><%= @book_show.user.name %></td>
-                  <td><%= link_to @book_show.title, "book_path(book.id)" %></td>
-                  <td><%= @book_show.body %></td>
 
-                </tr>
-              </tbody>
+
+           <tbody>
+            <tr>
+              <td>
+                <%= link_to book_path(@book_show.id) do %>
+                  <%= image_tag @book_show.user.get_profile_image(100, 100) %>
+                  <%= link_to @book_show.user.name, user_path(@book_show.user.id) %>
+                <% end %>
+              </td>
+              <td><%= link_to @book_show.title, book_path(@book_show.id) %></td>
+              <td><%= @book_show.body %></td>
+
+              <% if @book_show.user == current_user %>
+                <td><%= link_to "Edit", edit_book_path(@book_show.id), class: "btn btn-sm btn-success" %></td>
+                <td><%= link_to "Destroy", book_path(@book_show.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger" %></td>
+              <% end %>
+
+            </tr>
+           </tbody>
+
+
+
             </tr>
           </tbody>
       </table>

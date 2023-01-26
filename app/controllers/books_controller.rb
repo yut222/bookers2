@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+
+  before_action :is_matching_login_user, only: [:edit, :update]
+
   def new
     @book = Book.new
   end
@@ -33,10 +36,18 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @book = Book.find(params[:id])
   end
 
   def update
-    flash[:notice] = "successfully"  #フラッシュメッセージ
+    @book = Book.find(params[:id]) #不要？
+    @book.update(book_params)
+    if @book.save
+      flash[:notice] = "You have updated book successfully."  #フラッシュメッセージ
+      redirect_to book_path(@book.id)
+    else
+      render :show
+    end
   end
 
   def destroy
@@ -50,6 +61,14 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body)
+  end
+
+  # アクセス制限
+  def is_matching_login_user
+    user_id = params[:id].to_i
+    unless user_id == current_user.id
+      redirect_to post_images_path
+    end
   end
 
 end
