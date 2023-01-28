@@ -1,10 +1,10 @@
 <p id="notice"></p>
 <div class="container">
   <div class="row">
-    
+
     <!-- col3部分を共通化 -->
     <%= render 'users/list', user: @user, book: @book %>
-    
+
     <!-- ユーザーの投稿詳細 -->
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
@@ -17,16 +17,24 @@
                 <%= @book_show.user.name %>
               <% end %>
             </td>
-            <td><%= link_to @book_show.title, book_path(@book_show.id) %></td>
-            <td><%= @book_show.body %></td>
+            <td>
+              <%= link_to @book_show.title, book_path(@book_show.id) %>
+            </td>
+            <td>
+              <%= @book_show.body %>
+            </td>
             <% if @book_show.user == current_user %>
-              <td><%= link_to "Edit", edit_book_path(@book_show.id), class: "btn btn-sm btn-success" %></td>
-              <td><%= link_to "Destroy", book_path(@book_show.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger" %></td>
+              <td>
+                <%= link_to "Edit", edit_book_path(@book_show.id), class: "btn btn-sm btn-success" %>
+              </td>
+              <td>
+                <%= link_to "Destroy", book_path(@book_show.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger" %>
+              </td>
             <% end %>
           </tr>
         </tbody>
       </table>
     </div>
-    
+
   </div>
 </div>

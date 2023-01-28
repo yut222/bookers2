@@ -8,14 +8,14 @@ class BooksController < ApplicationController
 
   # 投稿データの保存
   def create
-    @user = current_user
-    @books = Book.all
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save  #バリデーション
       flash[:notice] = "You have created book successfully."  #フラッシュメッセージ
       redirect_to book_path(@book.id)
     else
+      @user = current_user
+      @books = Book.all
       render :index  #ブックの一覧画面を表示
     end
   end
@@ -31,7 +31,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @book_show = Book.find(params[:id])
 #    @books = Book.all
-    @user = current_user
+    @user = @book_show.user
 #    redirect_to book_path
   end
 
@@ -67,6 +67,7 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
+  
 
   # アクセス制限
   def is_matching_login_user
