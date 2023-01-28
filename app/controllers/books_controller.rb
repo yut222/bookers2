@@ -30,30 +30,35 @@ class BooksController < ApplicationController
   def show
     @book = Book.new
     @book_show = Book.find(params[:id])
-    @books = Book.all
+#    @books = Book.all
     @user = current_user
 #    redirect_to book_path
   end
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user == current_user
+      render "edit"
+    else
+      redirect_to books_path
+    end
   end
 
   def update
-    @book = Book.find(params[:id]) #不要？
-    @book.update(book_params)
-    if @book.save
+    @book = Book.find(params[:id])
+    @book.user_id = current_user.id
+    if @book.update(book_params)
       flash[:notice] = "You have updated book successfully."  #フラッシュメッセージ
       redirect_to book_path(@book.id)
     else
-      render :show
+      render :edit
     end
   end
 
   def destroy
-    @book = Book.find(params[:id])  # データ（レコード）を1件取得
-    @book.destroy  # データ（レコード）を削除
-    redirect_to books_path  # リダイレクト
+    book = Book.find(params[:id])
+    book.destroy
+    redirect_to books_path
   end
 
   # 投稿データのストロングパラメータ

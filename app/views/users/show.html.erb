@@ -1,14 +1,5 @@
+<p id="notice"></p>
 <div class="container px-5 px-sm-0">
-
- <% if @user.errors.any? %>
-  <%= @user.errors.count %> error prohibited this obj from
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
   <div class="row">
     <!-- col3部分を共通化 -->
     <%= render 'list', user: @user, book: @book %>
@@ -42,8 +33,6 @@
            </tbody>
           <% end %>
         </table>
-
-
     </div>
   </div>
 </div>

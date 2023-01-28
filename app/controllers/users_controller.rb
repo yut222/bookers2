@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
 
-
   def new
     @book = Book.new
   end
 
   def show
-    @book = Book.new
     @user = User.find(params[:id])
+    @book = Book.new
     @books = @user.books
   end
 
@@ -23,9 +22,14 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @book = Book.new
     @user = User.find(params[:id])
+    @book = Book.new
     @books = @user.books
+    if @user.id == current_user.id
+      render :edit
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   def index
@@ -36,18 +40,14 @@ class UsersController < ApplicationController
 
   def update
     @books = Book.all
-    @user = User.find(params[:id]) #不要？
-    @user.update(user_params)
-    if @user.save
+    @user = User.find(params[:id])
+    if @user.update(user_params)
       flash[:notice] = "You have updated user successfully."  #フラッシュメッセージ
       redirect_to user_path(@user.id)
     else
-      render :show
+      render :edit
     end
   end
-
-  private
-
 
 
   # 投稿データのストロングパラメータ
@@ -57,6 +57,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
   
-
-
 end
