@@ -33,7 +33,7 @@
             <% @books.each do |book| %>
               <tr>
                 <td>
-                  <%= link_to user_path(book.user_id) do %> <!--変更-->
+                  <%= link_to user_path(book.user) do %>
                     <%= image_tag book.user.get_profile_image(100, 100), fallback: "no_image.jpg" %>
                   <% end %>
                 </td>
